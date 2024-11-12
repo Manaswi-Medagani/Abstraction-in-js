@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let seconds = 0;
+let minutes = 0;
+let hours = 0;
+let stopwatchInterval;
+let waterReminderTimeout;
+
+// Function for the Water Reminder
+function waterReminder() {
+  console.log("Reminder: Time to drink water!");
+
+  // Schedule the next reminder in 1 hour (3600000 milliseconds)
+  waterReminderTimeout = setTimeout(waterReminder, 3600000);
+}
+
+// Function to Start the Water Reminder
+function startWaterReminder() {
+  waterReminder(); // Start the first reminder immediately
+  console.log("Water reminder started!");
+}
+
+// Function to Stop the Water Reminder
+function stopWaterReminder() {
+  clearTimeout(waterReminderTimeout);
+  console.log("Water reminder stopped.");
+}
+
+// Stopwatch Functions
+function startStopwatch() {
+  stopwatchInterval = setInterval(() => {
+    seconds++;
+
+    if (seconds === 60) {
+      seconds = 0;
+      minutes++;
+    }
+
+    if (minutes === 60) {
+      minutes = 0;
+      hours++;
+    }
+
+    console.log(
+      `Stopwatch Time: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
+    );
+  }, 1000);
+
+  console.log("Stopwatch started!");
+}
+
+function stopStopwatch() {
+  clearInterval(stopwatchInterval);
+  console.log("Stopwatch stopped.");
+}
+
+function resetStopwatch() {
+  clearInterval(stopwatchInterval);
+  seconds = 0;
+  minutes = 0;
+  hours = 0;
+  console.log("Stopwatch reset to 00:00:00.");
+}
+
+// Example Usage: Control Panel
+console.log("Commands:");
+console.log("1. startWaterReminder() - Start water reminder");
+console.log("2. stopWaterReminder() - Stop water reminder");
+console.log("3. startStopwatch() - Start stopwatch");
+console.log("4. stopStopwatch() - Stop stopwatch");
+console.log("5. resetStopwatch() - Reset stopwatch");
+
+// You can start and stop each feature by calling the functions in the console
+// e.g., startWaterReminder(), startStopwatch(), stopStopwatch(), resetStopwatch(), etc.
+
+    </script>
+</body>
+</html>
